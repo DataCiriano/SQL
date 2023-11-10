@@ -1,5 +1,6 @@
 ![image](https://github.com/DataAnalystMike/SQL/assets/147123439/99bf1940-9209-420d-96e5-979e3e55d2f8)
 
+# Welcome to my SQL project repository!
 
 Here you will find a collection of projects and examples of SQL queries that I have developed.<br>
 From simple databases to complex data analysis solutions, these projects demonstrate my journey in data management and analysis using SQL.<br>
