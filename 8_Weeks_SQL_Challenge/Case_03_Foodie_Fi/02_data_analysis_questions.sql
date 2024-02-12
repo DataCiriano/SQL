@@ -14,9 +14,15 @@ CASE 03: Foodie-Fi - Case Study B: Data Analysis Questions
 --QUESTION 2: What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
 
     SELECT
+<<<<<<< HEAD
         EXTRACT(MONTH FROM sub.start_date) AS month_num,
         MONTHNAME(sub.start_date) AS month_name,
     COUNT(sub.customer_id) AS total_subs
+=======
+    	EXTRACT(MONTH FROM sub.start_date) AS month_num,
+    	MONTHNAME(sub.start_date) AS month_name,
+    	COUNT(sub.customer_id) AS total_subs
+>>>>>>> c94369bec2d88f9ef6ef91cece5c3d1e4e9515c7
     FROM subscriptions AS sub
     WHERE sub.plan_id = 0
     GROUP BY month_num, month_name
@@ -48,9 +54,9 @@ CASE 03: Foodie-Fi - Case Study B: Data Analysis Questions
 
     WITH next_sub AS(
 	SELECT 
-		customer_id, 
-		plan_id,
-		LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_subscription
+	    customer_id, 
+	    plan_id,
+	    LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_subscription
 	FROM subscriptions
     )
 
@@ -87,12 +93,12 @@ CASE 03: Foodie-Fi - Case Study B: Data Analysis Questions
 --QUESTION 7: What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
 
 WITH next_dates AS(
-	SELECT
-		customer_id,
-		plan_id,
+    SELECT
+	customer_id,
+	plan_id,
         start_date,
-		LEAD(start_date) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_date
-	FROM subscriptions
+	LEAD(start_date) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_date
+    FROM subscriptions
     WHERE start_date <= '2020-12-31'
     )
 
@@ -112,7 +118,7 @@ condition for filtering only the active subscriptions and calculates the percent
 --QUESTION 8: How many customers have upgraded to an annual plan in 2020?
 
     SELECT 
-	    COUNT(DISTINCT customer_id) AS annual_customers
+	COUNT(DISTINCT customer_id) AS annual_customers
     FROM subscriptions
     WHERE plan_id = 3 AND start_date <= '2020-12-31';
 
@@ -125,11 +131,11 @@ WITH trial_plan AS (
   FROM subscriptions
   WHERE plan_id = 0
 ), annual_plan AS (
-	SELECT 
-		customer_id, 
-		start_date AS annual_date
-	FROM subscriptions
-	WHERE plan_id = 3
+  SELECT 
+    customer_id, 
+    start_date AS annual_date
+  FROM subscriptions
+  WHERE plan_id = 3
 )
 
     SELECT 
@@ -144,24 +150,24 @@ annual plan. The main query calculates de avegrage difference between this two d
 
 --QUESTION 10: Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
 
-    WITH trial_plan AS (
+WITH trial_plan AS (
   SELECT 
     customer_id, 
     start_date AS trial_date
   FROM subscriptions
   WHERE plan_id = 0
 ), annual_plan AS (
-	SELECT 
-		customer_id, 
-		start_date AS annual_date
-	FROM subscriptions
-	WHERE plan_id = 3
+  SELECT 
+	customer_id, 
+	start_date AS annual_date
+  FROM subscriptions
+  WHERE plan_id = 3
 ), day_difference AS (
-	SELECT
-		trial_plan.customer_id,
-		DATEDIFF(annual_date, trial_date) AS day_diff
-	FROM trial_plan
-    JOIN annual_plan ON trial_plan.customer_id = annual_plan.customer_id
+  SELECT
+	trial_plan.customer_id,
+	DATEDIFF(annual_date, trial_date) AS day_diff
+   FROM trial_plan
+   JOIN annual_plan ON trial_plan.customer_id = annual_plan.customer_id
 )
 
     SELECT
@@ -188,7 +194,7 @@ WITH next_sub AS(
 		plan_id,
 		LEAD(plan_id) OVER (PARTITION BY customer_id ORDER BY start_date) AS next_subscription
 	FROM subscriptions 
-    WHERE EXTRACT(YEAR FROM start_date) = 2020
+    	WHERE EXTRACT(YEAR FROM start_date) = 2020
     )
 
 SELECT 
