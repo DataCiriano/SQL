@@ -14,8 +14,8 @@ CASE 03: Foodie-Fi - Case Study B: Data Analysis Questions
 --QUESTION 2: What is the monthly distribution of trial plan start_date values for our dataset - use the start of the month as the group by value
 
     SELECT
-    EXTRACT(MONTH FROM sub.start_date) AS month_num,
-    MONTHNAME(sub.start_date) AS month_name,
+        EXTRACT(MONTH FROM sub.start_date) AS month_num,
+        MONTHNAME(sub.start_date) AS month_name,
     COUNT(sub.customer_id) AS total_subs
     FROM subscriptions AS sub
     WHERE sub.plan_id = 0
