@@ -1,4 +1,4 @@
-![foodi-fi-header](https://github.com/DataCiriano/SQL/assets/147123439/128ec1c2-b04c-4ef2-83ee-67b6d199588a)
+![image](https://github.com/DataCiriano/SQL/assets/147123439/0835f6b1-7dc5-45a3-89c6-baa3547cf4e0)
 
 https://8weeksqlchallenge.com/case-study-4/
 
